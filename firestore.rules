@@ -1,0 +1,31 @@
+
+// firestore.rules
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    function isSignedIn() { return request.auth != null; }
+    function userDoc(uid) { return get(/databases/$(database)/documents/users/$(uid)); }
+    function roleOf(uid) { return userDoc(uid).data.role; }
+    function levelOf(uid) { return userDoc(uid).data.level; } // beginner | advancer | master
+    function isTeacher() { return isSignedIn() && roleOf(request.auth.uid) in ['teacher','admin']; }
+    function isAdmin() { return isSignedIn() && roleOf(request.auth.uid) == 'admin'; }
+    function isLearner() { return isSignedIn() && roleOf(request.auth.uid) == 'learner'; }
+
+    match /users/{uid} {
+      allow read: if isTeacher() || (isSignedIn() && uid == request.auth.uid);
+      allow write: if isAdmin() || (isSignedIn() && uid == request.auth.uid);
+    }
+
+    match /requests/{id} {
+      allow create: if isLearner();
+      allow read: if isTeacher() || (isLearner() && resource.data.uid == request.auth.uid);
+      allow update: if isTeacher();
+      allow delete: if false;
+    }
+
+    match /bookings/{id} {
+      allow read: if true;
+      allow create, update, delete: if isTeacher();
+    }
+  }
+}
