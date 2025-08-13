@@ -1,7 +1,4 @@
-// postcss.config.cjs (CommonJS safe config)
+// postcss.config.cjs (CommonJS safe)
 module.exports = {
-  plugins: {
-    tailwindcss: {},
-    autoprefixer: {},
-  },
+  plugins: { tailwindcss: {}, autoprefixer: {} },
 };
