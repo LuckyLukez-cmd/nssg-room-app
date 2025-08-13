@@ -1,6 +1,8 @@
 
+// public/firebase-messaging-sw.js
 importScripts('https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js');
 importScripts('https://www.gstatic.com/firebasejs/10.12.2/firebase-messaging-compat.js');
+
 firebase.initializeApp({
   apiKey: "AIzaSyAfbJO_ySDVa0cOS3jrldRQP6JsbAJePm0",
   authDomain: "room-booking-nssg.firebaseapp.com",

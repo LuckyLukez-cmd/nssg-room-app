@@ -7,7 +7,7 @@ export default {
       colors: {
         nssg: {
           black: '#1F1F1F',
-          yellow: '#FFD521',
+          yellow: '#FFD521'
         }
       },
       borderRadius: { '2xl': '1rem' }

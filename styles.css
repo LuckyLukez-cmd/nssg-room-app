@@ -2,6 +2,5 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/* Camphor Std – optional: WOFF2 in /public/fonts ablegen und @font-face aktivieren */
-:root { --nssg-font: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; }
+:root { --nssg-font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji"; }
 body { font-family: var(--nssg-font); }
